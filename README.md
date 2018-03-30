@@ -47,6 +47,15 @@ questions section, push it, and we will update the file with answers.
 Started with fixing the test.  As I've never worked with Spring Boot, I cloned the 
 Spring Boot Hello World as an example.  
 
+I've set up a basic H2 database using Spring.  I'm really surprised how easy it was to add the dependency, a schema, 
+and data file to prototype the H2 setup in my local web app.  Most of the magic is being done by Spring and that is 
+awesome.
+
+The plan now is to tie CRUD operations to H2 with the REST operations in my controller.
+
+If I have time, I'm planning to tie my domain to elastic bean stalk and route53 to set up a basic web app in AWS.  If I
+have more time, I'll add some basic front end or error handling.
+
 ### TODO
  - Research a form of persistence to update and save the MOTD.
    - H2 or HSQLDB allow for in memory db; familiar with H2.
