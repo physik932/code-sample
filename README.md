@@ -50,4 +50,6 @@ Spring Boot Hello World as an example.
 ### TODO
  - Research a form of persistence to update and save the MOTD.
    - H2 or HSQLDB allow for in memory db; familiar with H2.
- - Check out AWS with free account for deployment.
+ - Tie H2 to Spring JPA, and tie JPA CRUD ops to REST ops
+ - Set up elastic bean stalk web server using completed JAR.
+ - Set up CNAME record for motd.rishi-sheth.com to Route53.
