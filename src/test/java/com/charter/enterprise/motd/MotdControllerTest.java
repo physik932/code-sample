@@ -24,6 +24,6 @@ public class MotdControllerTest {
     public void getMotd() throws Exception {
         mvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(equalTo("Goodbye world!")));
+                .andExpect(content().string(equalTo("Welcome to Charter.  All systems are nominal.")));
     }
 }
