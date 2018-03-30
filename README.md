@@ -41,3 +41,13 @@ AWS or Heroku, or whatever you're comfortable with will be an "A+"
 * Still need help?
   * Further hints are available, Feel free to ask questions here.  Edit this file in your branch by adding to the 
 questions section, push it, and we will update the file with answers. 
+
+## Rishi Sheth Development Notes
+
+Started with fixing the test.  As I've never worked with Spring Boot, I cloned the 
+Spring Boot Hello World as an example.  
+
+### TODO
+1. Check out the Spring Boot
+2. Research a form of persistence to update and save the MOTD.
+3. Check out AWS with free account for deployment.
