@@ -48,6 +48,6 @@ Started with fixing the test.  As I've never worked with Spring Boot, I cloned t
 Spring Boot Hello World as an example.  
 
 ### TODO
-1. Check out the Spring Boot
-2. Research a form of persistence to update and save the MOTD.
-3. Check out AWS with free account for deployment.
+ - Research a form of persistence to update and save the MOTD.
+   - H2 or HSQLDB allow for in memory db; familiar with H2.
+ - Check out AWS with free account for deployment.
