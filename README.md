@@ -44,6 +44,21 @@ questions section, push it, and we will update the file with answers.
 
 ## Rishi Sheth Development Notes
 
+####2018-03-31
+I've loved Spring so far.  JpaRepository, autowiring into the controller, using an H2 database with simple props set up
+in the application.properties has all been *really* easy.  Setting up mock tests and running the local server with
+testing help from Postman is also really easy.  At this point I can updated the MOTD and iterative requests work as
+expected.
+
+For clarity, I renamed Motd to MotdMain and am using Motd as an entity class tied to my h2 database.  Its initially
+populated by a data.sql file under src/main/resources.  The test was expanded to test my PUT function on the root
+web address (auth be damned).
+
+If this was to be a real web app, I'd have auth set up for the update.  A simple login app would be easy to use
+to see history of MOTDs and maybe instead of updating via PUT, you would only create with it.  A POST function could be
+created to update which MOTD we want based on a id setup, and the GET could be expanded to output all MOTDs available.
+
+####2018-03-29
 Started with fixing the test.  As I've never worked with Spring Boot, I cloned the 
 Spring Boot Hello World as an example.  
 
@@ -57,8 +72,5 @@ If I have time, I'm planning to tie my domain to elastic bean stalk and route53 
 have more time, I'll add some basic front end or error handling.
 
 ### TODO
- - Research a form of persistence to update and save the MOTD.
-   - H2 or HSQLDB allow for in memory db; familiar with H2.
- - Tie H2 to Spring JPA, and tie JPA CRUD ops to REST ops
  - Set up elastic bean stalk web server using completed JAR.
  - Set up CNAME record for motd.rishi-sheth.com to Route53.
