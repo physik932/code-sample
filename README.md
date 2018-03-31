@@ -72,5 +72,6 @@ If I have time, I'm planning to tie my domain to elastic bean stalk and route53 
 have more time, I'll add some basic front end or error handling.
 
 ### TODO
- - Set up elastic bean stalk web server using completed JAR.
- - Set up CNAME record for motd.rishi-sheth.com to Route53.
+ 1. Set up docker plugin to automatically build the app into a docker image
+ 2. Create a quick deployment process of the docker image to Amazon.
+ 3. Set up my EC2 and Route 53 to play nice on motd.rishi-sheth.com
