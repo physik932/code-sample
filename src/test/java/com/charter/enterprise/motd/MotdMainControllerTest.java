@@ -16,7 +16,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-public class MotdControllerTest {
+public class MotdMainControllerTest {
     @Autowired
     private MockMvc mvc;
 
@@ -25,5 +25,20 @@ public class MotdControllerTest {
         mvc.perform(MockMvcRequestBuilders.get("/"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(equalTo("Welcome to Charter.  All systems are nominal.")));
+    }
+
+    @Test
+    public void updateMotd() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("Welcome to Charter.  All systems are nominal.")));
+
+        mvc.perform(MockMvcRequestBuilders.put("/").content("Updated Motd!"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("Motd was updated!")));
+
+        mvc.perform(MockMvcRequestBuilders.get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(equalTo("Updated Motd!")));
     }
 }
