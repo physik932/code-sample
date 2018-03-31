@@ -1,13 +1,47 @@
 package com.charter.enterprise.motd;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-@SpringBootApplication
+@Entity
+@Table(name = "Message")
 public class Motd {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Motd.class, args);
+    @Id
+    @GeneratedValue
+    private int id;
+
+    @NotBlank
+    private String motd;
+
+    public Motd() {}
+
+    public Motd(int id, String motd) {
+        this.id = id;
+        this.motd = motd;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    String getMotd() {
+        return motd;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    void setMotd(String motd) {
+        this.motd = motd;
+    }
+
+    @Override
+    public String toString() {
+        return "Motd{" +
+                "id=" + id +
+                ", motd='" + motd + '\'' +
+                '}';
     }
 }
-
