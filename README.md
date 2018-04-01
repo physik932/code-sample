@@ -44,6 +44,31 @@ questions section, push it, and we will update the file with answers.
 
 ## Rishi Sheth Development Notes
 
+### Completed Deployment
+You can visit the project at [here](http://motd.rishi-sheth.com).  This is the alias of my deployed docker container on 
+Elastic Beanstalk that you can visit [here](http://motd.us-east-2.elasticbeanstalk.com).
+
+#### Changing the Message of the Day
+Using Postman or curl, you can PUT a raw body to the same endpoint.  You should receive a "Motd updated!" message if it 
+was successful.  
+
+### Development Process
+I started by learning about Spring Boot and how to wire up the basic REST functions to use locally.  I got this set up
+by referencing the Spring Boot Hello World documentation.  I added H2 as the in memory persistent database because I had 
+used it in previous projects for prototyping.  I used a repository class and autowired it to the MotdController class.
+I refactored Motd to MotdMain for the main application and used Motd as an entity class to map to our database.
+
+I was able to fix the initial test pretty quick by adjusting the expected text.  I added another test for the Put 
+Mapping, but ran into issues where the updateMotd() test would work but the getMotd() test would fail.  I found the 
+Spring application context persists between test. I used the @DirtiesContext annotation to fix this.
+
+The initial deployment with mvn spring-boot:run worked great, but I was able to get Docker set up locally and running 
+easily with `mvn install dockerfile:build` and running with `docker run -p 8080:8080 -t physik932/motd-code-sample`on 
+my local Docker instance.  The Maven Assembly plugin got the Dockerfile and jar file produced by maven into a zip file. 
+I uploaded this to elastic beanstalk and `http://motd.us-east-2.elasticbeanstalk.com` set up.  I used Route53 to set up 
+a Hosted Zone and A record to `motd.rishi-sheth.com`.
+
+
 ####2018-04-01
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
 picks up the Dockerfile and jar file into a zip file when I run `mvn clean package`.  I uploaded the zip into an elastic
