@@ -44,6 +44,13 @@ questions section, push it, and we will update the file with answers.
 
 ## Rishi Sheth Development Notes
 
+####2018-04-01
+I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
+picks up the Dockerfile and jar file into a zip file when I run `mvn clean package`.  I uploaded the zip into an elastic
+beanstalk application configured for a single docker container and a web server.  The Dockerfile was use java 8 and the
+jar file.  Once set up, I was able to access it at `http://motd.us-east-2.elasticbeanstalk.com/`.  I used Postman to 
+test the PUT function with a new MOTD as the message body.  
+
 ####2018-03-31
 I've loved Spring so far.  JpaRepository, autowiring into the controller, using an H2 database with simple props set up
 in the application.properties has all been *really* easy.  Setting up mock tests and running the local server with
