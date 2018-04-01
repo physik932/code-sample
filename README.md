@@ -52,6 +52,9 @@ Elastic Beanstalk that you can visit [here](http://motd.us-east-2.elasticbeansta
 Using Postman or curl, you can PUT a raw body to the same endpoint.  You should receive a "Motd updated!" message if it 
 was successful.  
 
+Using H2 for persistence, this updates the only record in the database.  You can follow up with a GET request in Postman
+or visit the site(s) in a browser to see the updated message.
+
 ### Development Process
 I started by learning about Spring Boot and how to wire up the basic REST functions to use locally.  I got this set up
 by referencing the Spring Boot Hello World documentation.  I added H2 as the in memory persistent database because I had 
@@ -68,6 +71,8 @@ my local Docker instance.  The Maven Assembly plugin got the Dockerfile and jar 
 I uploaded this to elastic beanstalk and `http://motd.us-east-2.elasticbeanstalk.com` set up.  I used Route53 to set up 
 a Hosted Zone and A record to `motd.rishi-sheth.com`.
 
+Overall, this was a lot easier to learn thanks to a lot of great blogs and tutorials provided by Spring, Amazon and 
+others.  I have enjoyed learning more about Docker, Spring, and Amazon services for deployment.
 
 ####2018-04-01
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
