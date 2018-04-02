@@ -39,14 +39,14 @@ Initially, I was searching for a way for Maven to build my Docker image to reduc
 I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
 it.  I was then able to run the docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
 
-To deploy this to Amazon, I wanted an easy plugin to create my Dockerfile + JAR zip easily, so I chose to use the Maven 
+To deploy this to Amazon, I wanted a plugin to create my Dockerfile + JAR zip in one step, so I chose to use the Maven 
 Assembly plugin.  This required I move my Dockerfile to src/main/docker, which then broke the Spotify plguin.  When 
 searching as to why, I found [Issue #89](https://github.com/spotify/dockerfile-maven/pull/89) and [Issue #117](https://github.com/spotify/dockerfile-maven/issues/117)
  related to adding a configurable location to the Spotify plugin.  In the end, I just created my own ZIP of the Dockerfile
  and JAR to upload to Amazon.
  
 ### Using Amazon's Elastic Beanstalk and Route 53
-I was able to easily set up an Elastic Beanstalk for a web application using a single docker image thanks to an awesome 
+I was able to set up an Elastic Beanstalk for a web application using a single docker image thanks to an awesome 
 guide they had.  I used Route53 to set up for fun to set up a Hosted Zone and A record to `motd.rishi-sheth.com`, and
 tied it to my Elastic Beanstalk instance running the docker image of my Spring boot app.
 
