@@ -45,7 +45,7 @@ questions section, push it, and we will update the file with answers.
 ## Rishi Sheth Development Notes
 
 ### Completed Deployment
-You can visit the project at [here](http://motd.rishi-sheth.com).  This is the alias of my deployed docker container on 
+You can visit the project [here](http://motd.rishi-sheth.com).  This is the alias of my deployed docker container on 
 Elastic Beanstalk that you can visit [here](http://motd.us-east-2.elasticbeanstalk.com).
 
 #### Changing the Message of the Day
@@ -74,14 +74,14 @@ a Hosted Zone and A record to `motd.rishi-sheth.com`.
 Overall, this was a lot easier to learn thanks to a lot of great blogs and tutorials provided by Spring, Amazon and 
 others.  I have enjoyed learning more about Docker, Spring, and Amazon services for deployment.
 
-####2018-04-01
+#### 2018-04-01
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
 picks up the Dockerfile and jar file into a zip file when I run `mvn clean package`.  I uploaded the zip into an elastic
 beanstalk application configured for a single docker container and a web server.  The Dockerfile was use java 8 and the
 jar file.  Once set up, I was able to access it at `http://motd.us-east-2.elasticbeanstalk.com/`.  I used Postman to 
 test the PUT function with a new MOTD as the message body.  
 
-####2018-03-31
+#### 2018-03-31
 I've loved Spring so far.  JpaRepository, autowiring into the controller, using an H2 database with simple props set up
 in the application.properties has all been *really* easy.  Setting up mock tests and running the local server with
 testing help from Postman is also really easy.  At this point I can updated the MOTD and iterative requests work as
@@ -95,7 +95,7 @@ If this was to be a real web app, I'd have auth set up for the update.  A simple
 to see history of MOTDs and maybe instead of updating via PUT, you would only create with it.  A POST function could be
 created to update which MOTD we want based on a id setup, and the GET could be expanded to output all MOTDs available.
 
-####2018-03-29
+#### 2018-03-29
 Started with fixing the test.  As I've never worked with Spring Boot, I cloned the 
 Spring Boot Hello World as an example.  
 
@@ -107,8 +107,3 @@ The plan now is to tie CRUD operations to H2 with the REST operations in my cont
 
 If I have time, I'm planning to tie my domain to elastic bean stalk and route53 to set up a basic web app in AWS.  If I
 have more time, I'll add some basic front end or error handling.
-
-### TODO
- 1. Set up docker plugin to automatically build the app into a docker image
- 2. Create a quick deployment process of the docker image to Amazon.
- 3. Set up my EC2 and Route 53 to play nice on motd.rishi-sheth.com
