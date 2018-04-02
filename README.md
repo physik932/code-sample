@@ -1,7 +1,7 @@
 # Charter MOTD - Rishi Sheth
 
 ## App Deployment
-The app has been deployed to Amazon ElasticBeanstlak via Docker image.  You can visit it [here](http://motd.us-east-2.elasticbeanstalk.com).
+The app has been deployed to Amazon Elastic Beanstalk via Docker image.  You can visit it [here](http://motd.us-east-2.elasticbeanstalk.com).
   
 I also wanted to play with Amazon Route 53 to use my domain to deploy the app.  I set up an A Record in a Hosted Zone
 for motd.rishi-sheth.com that you can see [here](http://motd.rishi-sheth.com).
@@ -46,13 +46,16 @@ Spotify dockerfile-maven plugin.  When debugging this online, I found [Issue #89
  and JAR to upload to Amazon.
  
 ### Using Amazon's Elastic Beanstalk and Route 53
-I was able to set up an Elastic Beanstalk for a web application using a single docker image thanks to an awesome 
-guide they had.  I used Route53 to set up for fun to set up a Hosted Zone and A record to `motd.rishi-sheth.com`, and
-tied it to my Elastic Beanstalk instance running the docker image of my Spring boot app.
+I was able to set up an Elastic Beanstalk instance for a web application using a single docker image.  I found the 
+documentation provided by Amazon really helpful in wiring all this together.  For my own fun, I used Route 53 to set up
+a Hosted Zone and an _A Record_ to a subdomain I own, `motd.rishi-sheth.com`.  Route 53 allowed me to tie this subdomain
+to my Elastic Beanstalk instance with one step.  
 
 ### Final Thoughts
-Overall, this was a lot easier to learn thanks to a lot of great blogs and tutorials provided by Spring, Amazon and 
-others.  I have enjoyed learning more about Docker, Spring, and Amazon services for deployment.
+Overall, I found this project to be enjoyable.  I learned a lot thanks to tutorials and documentation provided by Spring, 
+Docker, and Amazon.  I sourced information from several blog posts as well on a Spring Boot + Docker + Amazon web 
+application.  I believe all of these tools are extremely useful and flexible, and will continue to learn how to work 
+with them.
 
 _Note : I added the section below during development as notes to myself.  I thought it would be fine to keep them to 
 show my thought process and how I got from start to finish.  Thanks for reading._
@@ -92,14 +95,14 @@ awesome.
 
 The plan now is to tie CRUD operations to H2 with the REST operations in my controller.
 
-If I have time, I'm planning to tie my domain to elastic bean stalk and route53 to set up a basic web app in AWS.  If I
+If I have time, I'm planning to tie my domain to Elastic Beanstalk and Route 53 to set up a basic web app in AWS.  If I
 have more time, I'll add some basic front end or error handling.
 
 # Charter Enterprise MOTD Sample Project
-A small project to help assess candidate experience with webservices and our technology stack.
+A small project to help assess candidate experience with web services and our technology stack.
 
 ## Instructions
-We have provided a webservice that provides a "message of the day", similar to what you might see logging into a 
+We have provided a web service that provides a "message of the day", similar to what you might see logging into a 
 Unix system. Unfortuantely, at Charter things don't always go as planned and we need to change the message.  We need you
  to add the abilty to change the 
 message.  No message history or any other advanced functionality is needed, unless there is something you'd like to show
