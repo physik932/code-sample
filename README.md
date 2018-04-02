@@ -1,7 +1,7 @@
 # Charter MOTD - Rishi Sheth
 
 ## App Deployment
-The app has been deployed to Amazon ElasticBeanstlak via Docker image.  You can visit it [here](http://motd.us-east-2.elasticbeanstalk.com)
+The app has been deployed to Amazon ElasticBeanstlak via Docker image.  You can visit it [here](http://motd.us-east-2.elasticbeanstalk.com).
   
 I also wanted to play with Amazon Route 53 to use my domain to deploy the app.  I set up an A Record in a Hosted Zone
 for motd.rishi-sheth.com that you can see [here](http://motd.rishi-sheth.com).
@@ -10,24 +10,25 @@ for motd.rishi-sheth.com that you can see [here](http://motd.rishi-sheth.com).
 You can visit the above URL links or use a program like `curl` or Postman.
 
 ### Changing the Message of the Day
-Using Postman or curl, you can PUT a raw body to the same endpoint.  You should receive a "Motd updated!" message if it 
-was successful.  
+Using `curl` or Postman, you can PUT your new MOTD as a raw body to the one of the above websites.  You should receive 
+a "Motd updated!" message if the operation was successful.
 
-Using H2 for persistence, this updates the only record in the database.  You can follow up with a GET request in Postman
-or visit the site(s) in a browser to see the updated message.
+Using H2 for persistence, the PUT operation updates the only record in the database.  You can follow up with a GET 
+request in Postman or visit the site(s) in a browser to see the updated message.
 
 ### Development Process and Notes to Self
 I started by learning about Spring Boot and how to wire up the basic REST functions to use locally.  I got this set up
-by referencing the Spring Boot Hello World documentation.  I added H2 as the in memory pRishi Sheth Development Notesersistent database because I had 
-used it in previous projects for prototyping.  I used a repository class and autowired it to the MotdController class.
-I refactored Motd to MotdMain for the main application and used Motd as an entity class to map to our database.
+by referencing the Spring Boot Hello World app and documentation.  I added H2 as the in-memory persistent database 
+because I had used it in previous projects for prototyping.  I used a repository class and used the @Autowired annotation
+ to map our repository and rest controller class to each other.  I refactored `Motd` to `MotdMain` for the main 
+ application and used `Motd` as an entity class to map to our database.
 
-I was able to fix the initial test pretty quick by adjusting the expected text.  I added another test for the Put 
-Mapping, but ran into issues where the updateMotd() test would work but the getMotd() test would fail.  I found the 
-Spring application context persists between test. I used the @DirtiesContext annotation to fix this.
+I was able to fix the initial test pretty quick by adjusting the expected text.  I added another test for the PUT operation
+to update the motd, but ran into issues where the `updateMotd()` test would work but the `getMotd()` test would fail.  
+I found the Spring application context persists between tests. I used the `@DirtiesContext` annotation to fix this.
 
-The initial deployment with mvn spring-boot:run worked great, but I was able to get Docker set up locally and running 
-easily with `mvn install dockerfile:build` and running with `docker run -p 8080:8080 -t physik932/motd-code-sample`on 
+The initial deployment with `mvn spring-boot:run` created the app locally to run.  I was able to get Docker set up 
+locally and build my image with `mvn install dockerfile:build` and running with `docker run -p 8080:8080 -t physik932/motd-code-sample`on 
 my local Docker instance.  The Maven Assembly plugin got the Dockerfile and jar file produced by maven into a zip file. 
 I uploaded this to elastic beanstalk and `http://motd.us-east-2.elasticbeanstalk.com` set up.  I used Route53 to set up 
 a Hosted Zone and A record to `motd.rishi-sheth.com`.
