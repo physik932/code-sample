@@ -35,7 +35,8 @@ to update the motd, but ran into issues where the `updateMotd()` test would work
 I found the Spring application context persists between tests. I used the `@DirtiesContext` annotation to fix this.
 
 ### Maven, Docker, and Plugin Issues
-Initially, I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
+Initially, I was searching for a way for Maven to build my Docker image to reduce the amount of steps for deployment.  
+I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
 it.  I was then able to run the docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
 
 To deploy this to Amazon, I wanted an easy plugin to create my Dockerfile + JAR zip easily, so I chose to use the Maven 
