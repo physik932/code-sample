@@ -39,9 +39,9 @@ Initially, I was searching for a way for Maven to build my Docker image to reduc
 I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
 it.  I was then able to run the docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
 
-To deploy this to Amazon, I wanted a plugin to create a ZIP file of the Dockerfile and program JAR in one step, so I chose to use the Maven 
-Assembly plugin.  This required I move my Dockerfile to src/main/docker, which then broke the Spotify plguin.  When 
-searching as to why, I found [Issue #89](https://github.com/spotify/dockerfile-maven/pull/89) and [Issue #117](https://github.com/spotify/dockerfile-maven/issues/117)
+To deploy this to Amazon, I wanted a plugin to create a ZIP file of the Dockerfile and program JAR in one step, so I 
+chose to use the Maven Assembly plugin.  This required I move my Dockerfile to src/main/docker, which then broke the 
+Spotify dockerfile-maven plugin.  When debugging this online, I found [Issue #89](https://github.com/spotify/dockerfile-maven/pull/89) and [Issue #117](https://github.com/spotify/dockerfile-maven/issues/117)
  related to adding a configurable location to the Spotify plugin.  In the end, I just created my own ZIP of the Dockerfile
  and JAR to upload to Amazon.
  
