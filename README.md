@@ -3,7 +3,7 @@
 ## App Deployment
 The app has been deployed to Amazon Elastic Beanstalk via Docker image.  You can visit it [here](http://motd.us-east-2.elasticbeanstalk.com).
   
-I also wanted to play with Amazon Route 53 to use my domain to deploy the app.  I set up an A Record in a Hosted Zone
+I also wanted to play with Amazon Route 53 to use my domain for the app.  I set up an A Record in a Hosted Zone
 for motd.rishi-sheth.com that you can see [here](http://motd.rishi-sheth.com).
 
 ### Getting the MOTD
