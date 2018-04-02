@@ -55,7 +55,12 @@ others.  I have enjoyed learning more about Docker, Spring, and Amazon services 
 
 _Note : I added the section below during development as notes to myself.  I thought it would be fine to keep them to 
 show my thought process and how I got from start to finish.  Thanks for reading._
-#### 2018-04-01
+
+#### 2018-04-01 - Evening
+I ran into a final issue when cleaning up my README where Spotify's Dockerfile Maven plugin and Maven's Assembly Plugin
+had conflicts.  I documented it above.
+
+#### 2018-04-01 - Morning
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
 picks up the Dockerfile and jar file into a zip file when I run `mvn clean package`.  I uploaded the zip into an elastic
 beanstalk application configured for a single docker container and a web server.  The Dockerfile was use java 8 and the
