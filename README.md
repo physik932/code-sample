@@ -37,7 +37,7 @@ I found the Spring application context persists between tests. I used the `@Dirt
 ### Maven, Docker, and Plugin Issues
 Initially, I was searching for a way for Maven to build my Docker image to reduce the amount of steps for deployment.  
 I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
-it.  I was then able to run the docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
+it.  I was then able to run the Docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
 
 To deploy this to Amazon, I wanted a plugin to create a ZIP file of the Dockerfile and program JAR in one step, so I 
 chose to use the Maven Assembly plugin.  This required I move my Dockerfile to src/main/docker, which then broke the 
@@ -46,7 +46,7 @@ Spotify dockerfile-maven plugin.  When debugging this online, I found [Issue #89
  and JAR to upload to Amazon.
  
 ### Using Amazon's Elastic Beanstalk and Route 53
-I was able to set up an Elastic Beanstalk instance for a web application using a single docker image.  I found the 
+I was able to set up an Elastic Beanstalk instance for a web application using a single Docker image.  I found the 
 documentation provided by Amazon really helpful in wiring all this together.  For my own fun, I used Route 53 to set up
 a Hosted Zone and an _A Record_ to a subdomain I own, `motd.rishi-sheth.com`.  Route 53 allowed me to tie this subdomain
 to my Elastic Beanstalk instance with one step.  
@@ -67,7 +67,7 @@ had conflicts.  I documented it the notes above.
 #### 2018-04-01 - Morning
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
 picks up the Dockerfile and JAR file into a ZIP file when I run `mvn clean package`.  I uploaded the zip into a new
-Elastic Beanstalk application configured for a single docker container and a web server.  The Dockerfile was set up with
+Elastic Beanstalk application configured for a single Docker container and a web server.  The Dockerfile was set up with
 Java 8 and the rest of the settings were minimal.  Once set up, I was able to access it at `http://motd.us-east-2.elasticbeanstalk.com/`.  
 I used Postman to test the PUT function with a new MOTD as the message body.  
 
