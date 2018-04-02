@@ -57,46 +57,36 @@ Docker, and Amazon.  I sourced information from several blog posts as well on a 
 application.  I believe all of these tools are extremely useful and flexible, and will continue to learn how to work 
 with them.
 
-_Note : I added the section below during development as notes to myself.  I thought it would be fine to keep them to 
+_Note: I added the section below during development as notes to myself.  I thought it would be fine to keep them to 
 show my thought process and how I got from start to finish.  Thanks for reading._
 
 #### 2018-04-01 - Evening
 I ran into a final issue when cleaning up my README where Spotify's Dockerfile Maven plugin and Maven's Assembly Plugin
-had conflicts.  I documented it above.
+had conflicts.  I documented it the notes above.
 
 #### 2018-04-01 - Morning
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
-picks up the Dockerfile and jar file into a zip file when I run `mvn clean package`.  I uploaded the zip into an elastic
-beanstalk application configured for a single docker container and a web server.  The Dockerfile was use java 8 and the
-jar file.  Once set up, I was able to access it at `http://motd.us-east-2.elasticbeanstalk.com/`.  I used Postman to 
-test the PUT function with a new MOTD as the message body.  
+picks up the Dockerfile and JAR file into a ZIP file when I run `mvn clean package`.  I uploaded the zip into a new
+Elastic Beanstalk application configured for a single docker container and a web server.  The Dockerfile was set up with
+Java 8 and the rest of the settings were minimal.  Once set up, I was able to access it at `http://motd.us-east-2.elasticbeanstalk.com/`.  
+I used Postman to test the PUT function with a new MOTD as the message body.  
 
 #### 2018-03-31
-I've loved Spring so far.  JpaRepository, autowiring into the controller, using an H2 database with simple props set up
-in the application.properties has all been *really* easy.  Setting up mock tests and running the local server with
-testing help from Postman is also really easy.  At this point I can updated the MOTD and iterative requests work as
-expected.
+I've loved Spring so far.  JpaRepository and Autowiring into the controller were easy to set up basic CRUD operations.  
+I used an H2 database with one table and one row of the current MOTD.  In the application.properties, I set up some basic
+properties for the database and console access when deployed.  Setting up tests to run like a real web server was also
+great with the Mock framework built in for Spring.  Deploying the app locally, I was able to test from Postman.  At this
+point, I can update the MOTD and iterative requests work as expected.
 
-For clarity, I renamed Motd to MotdMain and am using Motd as an entity class tied to my h2 database.  Its initially
-populated by a data.sql file under src/main/resources.  The test was expanded to test my PUT function on the root
-web address (auth be damned).
-
-If this was to be a real web app, I'd have auth set up for the update.  A simple login app would be easy to use
-to see history of MOTDs and maybe instead of updating via PUT, you would only create with it.  A POST function could be
-created to update which MOTD we want based on a id setup, and the GET could be expanded to output all MOTDs available.
+For clarity, I renamed Motd to MotdMain for the Spring application context.  I am using Motd as an entity class.  
+It's initially populated by the data.sql file under src/main/resources.  I built a second test for the update function.
 
 #### 2018-03-29
-Started with fixing the test.  As I've never worked with Spring Boot, I cloned the 
-Spring Boot Hello World as an example.  
+Started with fixing the test by adding the correct message to the expected body.  To teach myself Spring, I followed 
+your advice and cloned the Spring Boot Hello World project. 
 
-I've set up a basic H2 database using Spring.  I'm really surprised how easy it was to add the dependency, a schema, 
-and data file to prototype the H2 setup in my local web app.  Most of the magic is being done by Spring and that is 
-awesome.
-
-The plan now is to tie CRUD operations to H2 with the REST operations in my controller.
-
-If I have time, I'm planning to tie my domain to Elastic Beanstalk and Route 53 to set up a basic web app in AWS.  If I
-have more time, I'll add some basic front end or error handling.
+I've set up a basic H2 database for the persistence of the MOTD.  The plan now is to tie CRUD operations in H2 to the 
+REST operations in my controller.
 
 # Charter Enterprise MOTD Sample Project
 A small project to help assess candidate experience with web services and our technology stack.
