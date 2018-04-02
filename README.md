@@ -28,13 +28,13 @@ Working with Spring Boot because pretty easy due to the overwhelming amount of d
 info out about it.  I was recommended a Spring Boot class on Udemy which I started and purchased a Spring related "masterclass"
 to learn more of what it is capable of.
 
-#### Fixing the broken test and Adding my own
+### Fixing the broken test and Adding my own
 
 I was able to fix the initial test pretty quick by adjusting the expected text.  I added another test for the PUT operation
 to update the motd, but ran into issues where the `updateMotd()` test would work but the `getMotd()` test would fail.  
 I found the Spring application context persists between tests. I used the `@DirtiesContext` annotation to fix this.
 
-#### Maven, Docker, and Plugin Issues
+### Maven, Docker, and Plugin Issues
 Initially, I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
 it.  I was then able to run the docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
 
@@ -44,12 +44,12 @@ searching as to why, I found [Issue #89](https://github.com/spotify/dockerfile-m
  related to adding a configurable location to the Spotify plugin.  In the end, I just created my own ZIP of the Dockerfile
  and JAR to upload to Amazon.
  
-#### Using Amazon's Elastic Beanstalk and Route 53
+### Using Amazon's Elastic Beanstalk and Route 53
 I was able to easily set up an Elastic Beanstalk for a web application using a single docker image thanks to an awesome 
 guide they had.  I used Route53 to set up for fun to set up a Hosted Zone and A record to `motd.rishi-sheth.com`, and
 tied it to my Elastic Beanstalk instance running the docker image of my Spring boot app.
 
-#### Final Thoughts
+### Final Thoughts
 Overall, this was a lot easier to learn thanks to a lot of great blogs and tutorials provided by Spring, Amazon and 
 others.  I have enjoyed learning more about Docker, Spring, and Amazon services for deployment.
 
