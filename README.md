@@ -45,8 +45,10 @@ questions section, push it, and we will update the file with answers.
 ## Rishi Sheth Development Notes
 
 ### Completed Deployment
-You can visit the project [here](http://motd.rishi-sheth.com).  This is the alias of my deployed docker container on 
-Elastic Beanstalk that you can visit [here](http://motd.us-east-2.elasticbeanstalk.com).
+The app has been deployed to Amazon ElasticBeanstlak via Docker image.  You can visit it [here](http://motd.us-east-2.elasticbeanstalk.com)
+  
+I also wanted to play with Amazon Route 53 to use my domain to deploy the app.  I set up an A Record in a Hosted Zone
+for motd.rishi-sheth.com that you can see [here](http://motd.rishi-sheth.com).
 
 #### Changing the Message of the Day
 Using Postman or curl, you can PUT a raw body to the same endpoint.  You should receive a "Motd updated!" message if it 
