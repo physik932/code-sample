@@ -20,19 +20,20 @@ request in Postman or visit the site(s) in a browser to see the updated message.
 
 I started by learning about Spring Boot and how to wire up the basic REST functions to use locally.  I got this set up
 by referencing the Spring Boot Hello World app and documentation.  I added H2 as the in-memory persistent database 
-because I had used it in previous projects for prototyping.  I used a repository class and used the @Autowired annotation
+because I had used it in previous projects for prototyping.  I used a repository class and the @Autowired annotation
  to map our repository and rest controller class to each other.  I refactored `Motd` to `MotdMain` for the main 
  application and used `Motd` as an entity class to map to our database.
  
-Working with Spring Boot because pretty easy due to the overwhelming amount of documentation, tutorials, and general 
-info out about it.  I was recommended a Spring Boot class on Udemy which I started and purchased a Spring related "masterclass"
+Working with Spring Boot became easier due to the amount of documentation, tutorials, and general 
+info available.  I was recommended a Spring Boot class on Udemy which I started and purchased a Spring related "masterclass"
 to learn more of what it is capable of.
 
 ### Fixing the broken test and Adding my own
 
 I was able to fix the initial test pretty quick by adjusting the expected text.  I added another test for the PUT operation
 to update the motd, but ran into issues where the `updateMotd()` test would work but the `getMotd()` test would fail.  
-I found the Spring application context persists between tests. I used the `@DirtiesContext` annotation to fix this.
+I found the Spring application context persists between tests. I used the `@DirtiesContext` annotation to fix this.  
+The annotation allows the test application context to be reset per test method run.
 
 ### Maven, Docker, and Plugin Issues
 Initially, I was searching for a way for Maven to build my Docker image to reduce the amount of steps for deployment.  
@@ -42,7 +43,7 @@ it.  I was then able to run the Docker image locally with `docker run -p 8080:80
 To deploy this to Amazon, I wanted a plugin to create a ZIP file of the Dockerfile and program JAR in one step, so I 
 chose to use the Maven Assembly plugin.  This required I move my Dockerfile to src/main/docker, which then broke the 
 Spotify dockerfile-maven plugin.  When debugging this online, I found [Issue #89](https://github.com/spotify/dockerfile-maven/pull/89) and [Issue #117](https://github.com/spotify/dockerfile-maven/issues/117)
- related to adding a configurable location to the Spotify plugin.  In the end, I just created my own ZIP of the Dockerfile
+ related to adding a configurable location to the Spotify plugin for the Dockerfile.  In the end, I just created my own ZIP of the Dockerfile
  and JAR to upload to Amazon.
  
 ### Using Amazon's Elastic Beanstalk and Route 53
@@ -61,8 +62,8 @@ _Note: I added the section below during development as notes to myself.  I thoug
 show my thought process and how I got from start to finish.  Thanks for reading._
 
 #### 2018-04-01 - Evening
-I ran into a final issue when cleaning up my README where Spotify's Dockerfile Maven plugin and Maven's Assembly Plugin
-had conflicts.  I documented it the notes above.
+I ran into a final issue when cleaning up my README and running a final build where Spotify's Dockerfile Maven plugin and Maven's Assembly Plugin
+had conflicts.  I documented it in the notes above.
 
 #### 2018-04-01 - Morning
 I finally got the deployment to Amazon's Elastic Beanstalk to work with help of the Maven Assembly Plugin.  The plugin
