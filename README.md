@@ -16,23 +16,40 @@ a "Motd updated!" message if the operation was successful.
 Using H2 for persistence, the PUT operation updates the only record in the database.  You can follow up with a GET 
 request in Postman or visit the site(s) in a browser to see the updated message.
 
-### Development Process and Notes to Self
+### Working with Spring
+
 I started by learning about Spring Boot and how to wire up the basic REST functions to use locally.  I got this set up
 by referencing the Spring Boot Hello World app and documentation.  I added H2 as the in-memory persistent database 
 because I had used it in previous projects for prototyping.  I used a repository class and used the @Autowired annotation
  to map our repository and rest controller class to each other.  I refactored `Motd` to `MotdMain` for the main 
  application and used `Motd` as an entity class to map to our database.
+ 
+Working with Spring Boot because pretty easy due to the overwhelming amount of documentation, tutorials, and general 
+info out about it.  I was recommended a Spring Boot class on Udemy which I started and purchased a Spring related "masterclass"
+to learn more of what it is capable of.
+
+#### Fixing the broken test and Adding my own
 
 I was able to fix the initial test pretty quick by adjusting the expected text.  I added another test for the PUT operation
 to update the motd, but ran into issues where the `updateMotd()` test would work but the `getMotd()` test would fail.  
 I found the Spring application context persists between tests. I used the `@DirtiesContext` annotation to fix this.
 
-The initial deployment with `mvn spring-boot:run` created the app locally to run.  I was able to get Docker set up 
-locally and build my image with `mvn install dockerfile:build` and running with `docker run -p 8080:8080 -t physik932/motd-code-sample`on 
-my local Docker instance.  The Maven Assembly plugin got the Dockerfile and jar file produced by maven into a zip file. 
-I uploaded this to elastic beanstalk and `http://motd.us-east-2.elasticbeanstalk.com` set up.  I used Route53 to set up 
-a Hosted Zone and A record to `motd.rishi-sheth.com`.
+#### Maven, Docker, and Plugin Issues
+Initially, I used Spotify's dockerfile-maven plugin to use `mvn install dockerfile:build` to build the image and deploy
+it.  I was then able to run the docker image locally with `docker run -p 8080:8080 -t physik932/motd-code-sample`.
 
+To deploy this to Amazon, I wanted an easy plugin to create my Dockerfile + JAR zip easily, so I chose to use the Maven 
+Assembly plugin.  This required I move my Dockerfile to src/main/docker, which then broke the Spotify plguin.  When 
+searching as to why, I found [Issue #89](https://github.com/spotify/dockerfile-maven/pull/89) and [Issue #117](https://github.com/spotify/dockerfile-maven/issues/117)
+ related to adding a configurable location to the Spotify plugin.  In the end, I just created my own ZIP of the Dockerfile
+ and JAR to upload to Amazon.
+ 
+#### Using Amazon's Elastic Beanstalk and Route 53
+I was able to easily set up an Elastic Beanstalk for a web application using a single docker image thanks to an awesome 
+guide they had.  I used Route53 to set up for fun to set up a Hosted Zone and A record to `motd.rishi-sheth.com`, and
+tied it to my Elastic Beanstalk instance running the docker image of my Spring boot app.
+
+#### Final Thoughts
 Overall, this was a lot easier to learn thanks to a lot of great blogs and tutorials provided by Spring, Amazon and 
 others.  I have enjoyed learning more about Docker, Spring, and Amazon services for deployment.
 
